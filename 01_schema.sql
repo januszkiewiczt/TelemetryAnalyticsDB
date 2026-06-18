@@ -50,3 +50,96 @@ CREATE TABLE feature_usage (
 		REFERENCES users(user_id)
     -- setting up the connection between the feature_usage and users table through a foreign key, 1 user using many features --
 );
+
+CREATE TABLE user_activity_daily (
+	activity_id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	activity_date DATE NOT NULL,
+	session_count INT NOT NULL,
+	total_duration_minutes INT NOT NULL,
+
+
+	CONSTRAINT FK_user_activity_daily_users
+		FOREIGN KEY (user_id)
+		REFERENCES users(user_id),
+
+	CONSTRAINT UQ_user_activity_date UNIQUE (user_id, activity_date),
+	-- Ensuring no duplicates are made for the same user and day
+
+	CONSTRAINT CK_user_activity_session_count
+		CHECK (session_count >= 0),
+	-- Session needs to be at least one otherwise the insert in invalid
+
+	CONSTRAINT CK_user_activity_duration
+	CHECK (total_duration_minutes >= 0)
+	-- Activity needs to be larger than zero otherwise the acitivty was not actually carried out
+);
+
+CREATE TABLE devices (
+	device_id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	device_type VARCHAR(60) NOT NULL,
+	OS VARCHAR NOT NULL,
+
+	CONSTRAINT FK_devices_user 
+		FOREIGN KEY (user_id)
+		REFERENCES users(user_id)
+
+);
+
+CREATE TABLE sessions (
+	session_id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	device_id INT NOT NULL,
+	start_time DATETIME2 NOT NULL,
+	end_time DATETIME2 NOT NULL DEFAULT GETDATE(),
+
+	CONSTRAINT FK_sessions_users
+		FOREIGN KEY (user_id)
+		REFERENCES users(user_id),
+
+	CONSTRAINT FK_sessions_devices
+		FOREIGN KEY (device_id)
+		REFERENCES devices(device_id)
+
+);
+
+CREATE TABLE event_types (
+	event_type_id INT IDENTITY(1,1) PRIMARY KEY,
+	event_name VARCHAR(255) NOT NULL
+
+);
+
+CREATE TABLE events (
+	event_id INT IDENTITY(1,1) PRIMARY KEY,
+	session_id INT NOT NULL,
+	user_id INT NOT NULL,
+	event_type_id INT NOT NULL,
+	event_time DATETIME2 NOT NULL DEFAULT GETDATE(),
+
+	CONSTRAINT FK_events_sessions
+		FOREIGN KEY (session_id)
+		REFERENCES sessions(session_id),
+
+	CONSTRAINT FK_events_users
+		FOREIGN KEY (user_id)
+		REFERENCES users(user_id),
+
+	CONSTRAINT FK_events_event_types
+		FOREIGN KEY (event_type_id)
+		REFERENCES event_types(event_type_id)	
+);
+
+
+CREATE TABLE event_metadata (
+	metadata_id INT IDENTITY(1,1) PRIMARY KEY,
+	event_id INT NOT NULL,
+	meta_key VARCHAR(50),
+	meta_value VARCHAR(50),
+	
+	CONSTRAINT FK_event_medatadata_event
+		FOREIGN KEY (event_id)
+		REFERENCES events(event_id)
+
+);
+
