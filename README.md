@@ -9,6 +9,7 @@ The schema is built for SQL Server and uses native features including `IDENTITY`
 The project includes a range of SQL queries designed to answer real-world telemetry questions across users, sessions, events, devices, regions, and feature usage. The analysis demonstrates the use of joins, Common Table Expressions (CTEs), subqueries, aggregate and window functions, conditional logic, and date functions to transform raw telemetry data into meaningful business insights.
 
 A custom PowerBI report has been created with the use of the Telemetry Analytics Database in the background, with the objective of demonstrating the functionality of the DB within a business analytics environment.
+---
 
 ## Schema Structure
 
@@ -83,7 +84,7 @@ Overlapping sessions for the same device are not enforced at the schema level, a
 
 ## File Structure
 
-```
+---
 TelemetryAnalyticsDB/
   01_schema.sql        -- Full schema definition
   02_sample_data.sql   -- All data used for the database
@@ -91,8 +92,7 @@ TelemetryAnalyticsDB/
   04_dashboard      -- Custom created Power BI report showing DB connection and data analysis
   README.md         -- This file
 
-```
-
+---
 ## Queries
 
 15 analytical queries are included in `03_queries.sql`, each addressing a realistic business question against the telemetry dataset. The queries are grouped by theme and progress in complexity from basic aggregation through to CTEs and window functions.
@@ -139,6 +139,7 @@ The [Devices](04_dashboard/03_devices.png) page breaks down the device landscape
 The [Events](04_dashboard/04_events.png) page covers daily average event volume, a breakdown of the most frequently fired event types, a daily event tracker, and event distribution by country.
 
 The [Sessions](04_dashboard/05_sessions.png) page tracks average sessions per user against a target gauge, average session duration with a benchmark, sessions by country, and total daily session volume across June 2026.
+
 ---
 
 ## Status
