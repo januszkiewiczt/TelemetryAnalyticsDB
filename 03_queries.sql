@@ -1,4 +1,4 @@
--- Telemetry Analysis Queries
+-- Telemetry Analysis Queries v1.0
 
 -- Users Queries
 
