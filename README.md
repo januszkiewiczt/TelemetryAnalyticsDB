@@ -130,15 +130,15 @@ TelemetryAnalyticsDB/
 
 A Power BI report has been created using TelemetryAnalyticsDB as the live data source, with the objective of demonstrating the functionality of the database within a business analytics environment.
 
-The [Overview](04_dashboard/screenshots/01_overview.png) page includes four headline KPI cards covering total users, sessions, events, and devices across the platform.
+The [Overview](04_dashboard/01_overview.png) page includes four headline KPI cards covering total users, sessions, events, and devices across the platform.
 
-The [Users](04_dashboard/screenshots/02_users.png) page focuses on user analysis by country, total sessions per month, and the top 10 most active users by session time. A gauge visual determines whether the 94% monthly active user target is being met.
+The [Users](04_dashboard/02_users.png) page focuses on user analysis by country, total sessions per month, and the top 10 most active users by session time. A gauge visual determines whether the 94% monthly active user target is being met.
 
-The [Devices](04_dashboard/screenshots/03_devices.png) page breaks down the device landscape by OS and manufacturer, shows the average number of devices per user, and maps device deployment by country.
+The [Devices](04_dashboard/03_devices.png) page breaks down the device landscape by OS and manufacturer, shows the average number of devices per user, and maps device deployment by country.
 
-The [Events](04_dashboard/screenshots/04_events.png) page covers daily average event volume, a breakdown of the most frequently fired event types, a daily event tracker, and event distribution by country.
+The [Events](04_dashboard/04_events.png) page covers daily average event volume, a breakdown of the most frequently fired event types, a daily event tracker, and event distribution by country.
 
-The [Sessions](04_dashboard/screenshots/05_sessions.png) page tracks average sessions per user against a target gauge, average session duration with a benchmark, sessions by country, and total daily session volume across June 2026.
+The [Sessions](04_dashboard/05_sessions.png) page tracks average sessions per user against a target gauge, average session duration with a benchmark, sessions by country, and total daily session volume across June 2026.
 ---
 
 ## Status
